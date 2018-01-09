@@ -55,19 +55,19 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         DataOutputStream dos = new DataOutputStream(bos);
 
         try {
-            // populate text payload
+
             Map<String, String> params = getParams();
             if (params != null && params.size() > 0) {
                 textParse(dos, params, getParamsEncoding());
             }
 
-            // populate data byte payload
+
             Map<String, DataPart> data = getByteData();
             if (data != null && data.size() > 0) {
                 dataParse(dos, data);
             }
 
-            // close multipart form data after text and file data
+
             dos.writeBytes(twoHyphens + boundary + twoHyphens + lineEnd);
 
             return bos.toByteArray();
@@ -77,12 +77,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         return null;
     }
 
-    /**
-     * Custom method handle data payload.
-     *
-     * @return Map data part label with data byte
-     * @throws AuthFailureError
-     */
+
     protected Map<String, DataPart> getByteData() throws AuthFailureError {
         return null;
     }
@@ -139,14 +134,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         }
     }
 
-    /**
-     * Write string data into header and data output stream.
-     *
-     * @param dataOutputStream data output stream handle string parsing
-     * @param parameterName    name of input
-     * @param parameterValue   value of input
-     * @throws IOException
-     */
+
     private void buildTextPart(DataOutputStream dataOutputStream, String parameterName, String parameterValue) throws IOException {
         dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
         dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"" + parameterName + "\"" + lineEnd);
@@ -154,14 +142,7 @@ public class VolleyMultipartRequest extends Request<NetworkResponse> {
         dataOutputStream.writeBytes(parameterValue + lineEnd);
     }
 
-    /**
-     * Write data file into header and data output stream.
-     *
-     * @param dataOutputStream data output stream handle data parsing
-     * @param dataFile         data byte as DataPart from collection
-     * @param inputName        name of data input
-     * @throws IOException
-     */
+
     private void buildDataPart(DataOutputStream dataOutputStream, DataPart dataFile, String inputName) throws IOException {
         dataOutputStream.writeBytes(twoHyphens + boundary + lineEnd);
         dataOutputStream.writeBytes("Content-Disposition: form-data; name=\"" +

@@ -78,10 +78,6 @@ public class MainActivity extends AppCompatActivity {
         preview = (FrameLayout) findViewById(R.id.frameLayout);
         queue = Volley.newRequestQueue(getApplicationContext());
 
-//        if(checkCameraHardware(this))
-//        {
-//            checkPermission();
-//        }
         mCamera = getCameraInstance();
 
         mPreview = new CameraPreview(this, mCamera);
@@ -101,22 +97,6 @@ public class MainActivity extends AppCompatActivity {
                     captureButton.setEnabled(true);
 
                 }
-//                File pictureFile = getOutputMediaFile();
-//
-//                if (pictureFile == null){
-//                    return;
-//                }
-//
-//                try {
-//                    FileOutputStream fos = new FileOutputStream(pictureFile);
-//                    fos.write(data);
-//                    fos.close();
-//                    MediaStore.Images.Media.insertImage(getContentResolver(), pictureFile.getAbsolutePath(), pictureFile.getName(), pictureFile.getName());
-//                } catch (FileNotFoundException e) {
-//
-//                } catch (IOException e) {
-//
-//                }
 
             }
         };
@@ -216,25 +196,6 @@ public class MainActivity extends AppCompatActivity {
         //adding the request to volley
         queue.add(postrequest);;
     }
-//    private File getOutputMediaFile()
-//    {
-//        File mediaStorageDir = new File(Environment.getExternalStorageDirectory()+"/NumberPlateAPP");
-//        if (! mediaStorageDir.exists()){
-//            if (! mediaStorageDir.mkdirs()){
-//                return null;
-//            }
-//        }
-//
-//        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-//        File mediaFile;
-//
-//            mediaFile = new File(mediaStorageDir.getPath() + File.separator +
-//                    "IMG_"+ timeStamp + ".jpg");
-//
-//
-//        return mediaFile;
-//
-//    }
 
     private boolean isNetworkAvailable() {
 
@@ -269,7 +230,6 @@ public class MainActivity extends AppCompatActivity {
 
                 else {
 
-                    //Snackbar.make(MainActivity.this, "Permission Denied, You cannot access location data and camera.", Snackbar.LENGTH_LONG).show();
                     Toast.makeText(this, "Please provide the required Permissions", Toast.LENGTH_SHORT).show();
                     if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                         if (shouldShowRequestPermissionRationale(Manifest.permission.CAMERA)) {
